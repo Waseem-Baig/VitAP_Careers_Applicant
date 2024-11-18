@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import SignInMobile from "../components/sign-in-mobile-empty"; // Adjust the import path as necessary
-import SignIn from "../components/sign-in-empty"; // Adjust the import path as necessary
+import SignInMobile from "../components/sign-in/sign-in-empty-mobile/sign-in-mobile-empty"; // Adjust the import path as necessary
+import SignIn from "../components/sign-in/sign-in-empty/sign-in-empty"; // Adjust the import path as necessary
 
 const SignInWrapper = () => {
   const [isMobile, setIsMobile] = useState(false);
