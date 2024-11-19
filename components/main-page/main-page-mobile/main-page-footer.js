@@ -10,27 +10,42 @@ const Footer = () => {
 
   return (
     <>
-      <div className="w-full h-auto bg-[#FDFEFF] flex flex-col justify-center items-center gap-4 mb-4">
+      <div className="w-full h-auto bg-[#FDFEFF] flex flex-col justify-center items-center gap-4">
         <img src={logoSrc} alt="logo" className="w-[40%] h-auto" />
         <div className="flex gap-2">
-          <div className="bg-gray-300 w-5 h-5 flex justify-center items-center">
+          <a
+            className="bg-gray-300 w-5 h-5 flex justify-center items-center"
+            href="#"
+          >
             <FaInstagramSquare />
-          </div>
-          <div className="bg-gray-300 w-5 h-5 flex justify-center items-center">
+          </a>
+          <a
+            className="bg-gray-300 w-5 h-5 flex justify-center items-center"
+            href="#"
+          >
             <FaTwitter />
-          </div>
-          <div className="bg-gray-300 w-5 h-5 flex justify-center items-center">
+          </a>
+          <a
+            className="bg-gray-300 w-5 h-5 flex justify-center items-center"
+            href="#"
+          >
             <FaLinkedin />
-          </div>
-          <div className="bg-gray-300 w-5 h-5 flex justify-center items-center">
+          </a>
+          <a
+            className="bg-gray-300 w-5 h-5 flex justify-center items-center"
+            href="#"
+          >
             <FaFacebookSquare />
-          </div>
-          <div className="bg-gray-300 w-5 h-5 flex justify-center items-center">
+          </a>
+          <a
+            className="bg-gray-300 w-5 h-5 flex justify-center items-center"
+            href="#"
+          >
             <FaYoutube />
-          </div>
+          </a>
         </div>
       </div>
-      <footer className="w-full bg-[#650010] text-white text-center p-4 text-white font-[Emilio-Test] text-[12px] font-semibol">
+      <footer className="w-screen bg-[#650010] text-center p-4 text-white font-[Emilio-Test] text-[12px] font-semibold h-auto">
         Crafted With Passion At VIT-AP University
       </footer>
     </>

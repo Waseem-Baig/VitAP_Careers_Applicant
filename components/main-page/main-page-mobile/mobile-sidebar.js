@@ -3,7 +3,7 @@ const logoSrc =
 
 const Button = ({ children, className, onClick }) => (
   <button
-    className={`flex items-center self-stretch py-4 font-montserrat text-[12px] font-medium ${className}`}
+    className={`flex items-center self-stretch py-2 font-montserrat text-[12px] font-medium ${className}`}
     onClick={onClick}
   >
     {children}
@@ -44,7 +44,7 @@ const Sidebar = ({ isOpen, onClose }) => {
         </p>
       </div>
       <div className="flex flex-col gap-4">
-        <Button className="border border-[#650010] text-[#650010] text-center w-full p-[10px] text-[12px]">
+        <Button className="border border-[#650010] text-[#650010] text-center w-full p-[10px] text-[12px] flex justify-center items-center">
           VITAp Home Page
         </Button>
         <div className="text-white bg-[#650010] shadow-[0px_10px_30px_0px_rgba(101,0,16,0.2)]">
@@ -64,10 +64,10 @@ const Sidebar = ({ isOpen, onClose }) => {
           <Button key={label}>{label}</Button>
         ))}
       </div>
-      <Button className="text-[#650010] font-montserrat text-[12px] font-medium p-[10px_16px] border border-[#5C0E14] shadow -[0px_10px_30px_0px_rgba(101,0,16,0.2)]">
+      <Button className="text-[#650010] font-montserrat text-[12px] font-medium p-[10px_16px] border border-[#5C0E14] shadow -[0px_10px_30px_0px_rgba(101,0,16,0.2)] flex justify-center items-center">
         Jobs you applied
       </Button>
-      <div className="text-white bg-[#650010] shadow-[0px_10px_30px_0px_rgba(101,0,16,0.2)] text-center p-[10px_16px]">
+      <div className="text-white bg-[#650010] shadow-[0px_10px_30px_0px_rgba(101,0,16,0.2)] text-center flex justify-center items-center">
         <Button>Logout</Button>
       </div>
     </div>

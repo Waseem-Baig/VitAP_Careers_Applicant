@@ -1,5 +1,5 @@
 import Sidebar from "./sidebar";
-import Navbar from "./navbar";
+import Navbar from "./main-page-navbar";
 import Mainbar from "./mainbar";
 
 const Mainpage = () => {

@@ -1,9 +1,9 @@
 import { useState } from "react";
-import Navbar from "@/components/sign-in/sign-in-empty-mobile/navbar";
-import Header from "@/components/sign-in/sign-in-empty-mobile/header";
+import Navbar from "@/components/sign-in/sign-in-empty-mobile/sign-in-navbar";
+import Header from "@/components/sign-in/sign-in-empty-mobile/sign-in-header";
 import Status from "../main-page-desktop/job-status";
-import Footer from "./footer";
-import Sidebar from "./sidebar"; // Import your Sidebar component
+import Footer from "./main-page-footer";
+import Sidebar from "./mobile-sidebar"; // Import your Sidebar component
 
 const MainpageMobile = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);

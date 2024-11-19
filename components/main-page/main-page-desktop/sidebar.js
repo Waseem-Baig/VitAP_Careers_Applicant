@@ -12,7 +12,7 @@ const Button = ({ children, className, onClick }) => (
 
 const SidebarButton = ({ label, icon }) => (
   <button className="flex justify-center items-center">
-    <div className="flex justify-between gap-10 p-[16px_20px]">
+    <div className="flex justify-between gap-10 p-[12px_15px]">
       <p className="text-white font-montserrat text-[16px] font-medium">
         {label}
       </p>
@@ -23,7 +23,7 @@ const SidebarButton = ({ label, icon }) => (
 
 const Sidebar = () => {
   return (
-    <div className="w-[20vw] h-screen p-[24px_32px] flex flex-col gap-5 border-r-[1px] border-gray-300 bg-white">
+    <div className="w-[20vw] h-[80vh] p-[24px_32px] flex flex-col gap-4 border-r-[1px] border-gray-300 bg-white">
       <div className="flex justify-between">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={logoSrc} alt="logo" width="90vw" />
@@ -32,7 +32,7 @@ const Sidebar = () => {
           <ChevronIcon />
         </button>
       </div>
-      <div className="flex flex-col pb-5">
+      <div className="flex flex-col pb-3">
         <p className="text-black font-montserrat text-[20px] font-bold">
           Hello Sri Vardhan
         </p>
@@ -43,13 +43,13 @@ const Sidebar = () => {
       <div className="text-white bg-[#650010] shadow-[0px_10px_30px_0px_rgba(101,0,16,0.2)]">
         <SidebarButton label="Dashboard" icon={<DashboardIcon />} />
       </div>
-      <div className="flex flex-col pb-4">
+      <div className="flex flex-col">
         <Button>Personal Information</Button>
         <Button>Education</Button>
         <Button>Research</Button>
         <Button>Documents Upload</Button>
       </div>
-      <button className="text-[#650010] font-montserrat text-[16px] font-medium p-[16px_20px] border border-[#5C0E14] shadow-[0px_10px_30px_0px_rgba(101,0,16,0.2)]">
+      <button className="text-[#650010] font-montserrat text-[16px] font-medium p-[12px_15px] border border-[#5C0E14] shadow-[0px_10px_30px_0px_rgba(101,0,16,0.2)]">
         Jobs you applied
       </button>
     </div>

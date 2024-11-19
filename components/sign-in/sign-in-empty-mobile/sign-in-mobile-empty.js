@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useState } from "react";
-import Header from "./header";
-import Navbar from "./navbar";
+import Header from "./sign-in-header";
+import Navbar from "./sign-in-navbar";
 
 const OTPInput = ({ count }) => {
   return (
