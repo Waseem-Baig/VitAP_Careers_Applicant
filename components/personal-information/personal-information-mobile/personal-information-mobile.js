@@ -44,7 +44,7 @@ const PersonalInformationMobile = () => {
               <select
                 id="salutation"
                 name="salutation"
-                className="border border-gray-300 p-2 w-[100%]"
+                className="border border-[#D1B3B8] p-2 w-[100%]"
               >
                 <option value="" disabled>
                   -- Select Pronoun --
@@ -63,7 +63,7 @@ const PersonalInformationMobile = () => {
               <input
                 type="text"
                 placeholder="Enter your name"
-                className="border border-gray-300 p-2 w-[100%]"
+                className="border border-[#D1B3B8] p-2 w-[100%]"
               />
             </div>
             <div className="flex flex-col gap-2">
@@ -73,7 +73,7 @@ const PersonalInformationMobile = () => {
               <input
                 type="text"
                 placeholder=""
-                className="border border-gray-300 p-2 w-[100%]"
+                className="border border-[#D1B3B8] p-2 w-[100%]"
               />
             </div>
             <div className="flex flex-col gap-2">
@@ -86,7 +86,7 @@ const PersonalInformationMobile = () => {
               <input
                 type="text"
                 placeholder=""
-                className="border border-gray-300 p-2 w-[100%]"
+                className="border border-[#D1B3B8] p-2 w-[100%]"
               />
             </div>
           </div>
@@ -97,7 +97,7 @@ const PersonalInformationMobile = () => {
             <select
               id="gender"
               name="gender"
-              className="border border-gray-300 p-2 w-[100%]"
+              className="border border-[#D1B3B8] p-2 w-[100%]"
             >
               <option value="" disabled>
                 -- Select Gender --
@@ -119,7 +119,7 @@ const PersonalInformationMobile = () => {
             <input
               type="text"
               placeholder=""
-              className="border border-gray-300 p-2 w-[100%]"
+              className="border border-[#D1B3B8] p-2 w-[100%]"
             />
           </div>
           <div className="flex flex-col gap-2">
@@ -129,7 +129,7 @@ const PersonalInformationMobile = () => {
             <input
               type="text"
               placeholder=""
-              className="border border-gray-300 p-2 w-[100%]"
+              className="border border-[#D1B3B8] p-2 w-[100%]"
             />
           </div>
           <div className="flex flex-col gap-2">
@@ -139,7 +139,7 @@ const PersonalInformationMobile = () => {
             <select
               id="country"
               name="country"
-              className="border border-gray-300 p-2 w-[100%]"
+              className="border border-[#D1B3B8] p-2 w-[100%]"
             >
               <option value="" disabled>
                 -- Select Country --
@@ -165,7 +165,7 @@ const PersonalInformationMobile = () => {
             <input
               type="text"
               placeholder="Enter your State"
-              className="border border-gray-300 p-2 w-[100%]"
+              className="border border-[#D1B3B8] p-2 w-[100%]"
             />
           </div>
           <div className="flex flex-col gap-2">
@@ -175,7 +175,7 @@ const PersonalInformationMobile = () => {
             <input
               type="text"
               placeholder="Enter your city"
-              className="border border-gray-300 p-2 w-[100%]"
+              className="border border-[#D1B3B8] p-2 w-[100%]"
             />
           </div>
         </div>

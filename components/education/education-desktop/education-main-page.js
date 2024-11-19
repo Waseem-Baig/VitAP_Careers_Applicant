@@ -1,5 +1,77 @@
 import React from "react";
 
+const InputField = ({ label, placeholder, id }) => (
+  <div className="flex flex-col gap-2">
+    <label htmlFor={id} className="text-[16px] font-montserrat">
+      {label}
+      <span className="text-red-600">*</span>
+    </label>
+    <input
+      type="text"
+      placeholder={placeholder}
+      className="border border-[#D1B3B8] p-2 w-[25vw] placeholder-[rgba(51, 51, 51, 0.40)] placeholder-font-montserrat placeholder-text-[13.893px] placeholder-font-normal placeholder-leading-[18.524px]"
+    />
+  </div>
+);
+
+const SelectField = ({ label, id, options }) => (
+  <div className="flex flex-col gap-2">
+    <label htmlFor={id} className="text-[16px] font-montserrat">
+      {label}
+      <span className="text-red-600">*</span>
+    </label>
+    <select
+      id={id}
+      name={id}
+      className="block w-[25vw] px-3 py-2 border border-[#D1B3B8] shadow-sm focus:outline-none sm:text-sm"
+    >
+      <option value="" disabled defaultValue>
+        Select
+      </option>
+      {options.map((option) => (
+        <option key={option.value} value={option.value}>
+          {option.label}
+        </option>
+      ))}
+    </select>
+  </div>
+);
+
+const MonthYearSelect = ({ monthId, yearId, years }) => (
+  <div className="flex gap-4">
+    <select
+      id={monthId}
+      name={monthId}
+      className="border border-[#D1B3B8] w-[8vw] h-[7vh] text-sm"
+      defaultValue=""
+    >
+      <option value="" disabled>
+        MM
+      </option>
+      {Array.from({ length: 12 }, (_, i) => (
+        <option key={i + 1} value={i + 1}>
+          {new Date(0, i).toLocaleString("default", { month: "short" })}
+        </option>
+      ))}
+    </select>
+    <select
+      id={yearId}
+      name={yearId}
+      className="border border-[#D1B3B8] w-[10vw] h-[7vh] text-sm"
+      defaultValue=""
+    >
+      <option value="" disabled>
+        YYYY
+      </option>
+      {years.map((year) => (
+        <option key={year} value={year}>
+          {year}
+        </option>
+      ))}
+    </select>
+  </div>
+);
+
 const EducationMainPage = () => {
   // Generate years from 2010 to 2024
   const years = [];
@@ -14,28 +86,16 @@ const EducationMainPage = () => {
           Education Details - 10th Standard
         </p>
         <div className="flex justify-between">
-          <div className="flex flex-col gap-2">
-            <label htmlFor="schoolName" className="text-[16px] font-montserrat">
-              Name of the School/Institute
-              <span className="text-red-600">*</span>
-            </label>
-            <input
-              type="text"
-              placeholder="Enter Your School Name"
-              className="border border-gray-300 p-2 w-[25vw] placeholder-[rgba(51, 51, 51, 0.40)] placeholder-font-montserrat placeholder-text-[13.893px] placeholder-font-normal placeholder-leading-[18.524px]"
-            />
-          </div>
-          <div className="flex flex-col gap-2">
-            <label htmlFor="boardName" className="text-[16px] font-montserrat">
-              Name of the Board
-              <span className="text-red-600">*</span>
-            </label>
-            <input
-              type="text"
-              placeholder="Enter the Board Name [Eg: AP State Board, CBSE]"
-              className="border border-gray-300 p-2 w-[25vw] placeholder-[rgba(51, 51, 51, 0.40)] placeholder-font-montserrat placeholder-text-[13.893px] placeholder-font-normal placeholder-leading-[18.524px]"
-            />
-          </div>
+          <InputField
+            label="Name of the School/Institute"
+            placeholder="Enter Your School Name"
+            id="schoolName"
+          />
+          <InputField
+            label="Name of the Board"
+            placeholder="Enter the Board Name [Eg: AP State Board, CBSE]"
+            id="boardName"
+          />
         </div>
         <div className="flex justify-between">
           <div className="flex flex-col gap-2">
@@ -46,87 +106,28 @@ const EducationMainPage = () => {
               Year of Completion
               <span className="text-red-600">*</span>
             </label>
-            <div className="flex gap-4">
-              <select
-                id="month"
-                name="month"
-                className="border border-gray-300 w-[8vw] h-[7vh] text-sm"
-                defaultValue=""
-              >
-                <option value="" disabled>
-                  MM
-                </option>
-
-                <option value="1">Jan</option>
-                <option value="2">Feb</option>
-                <option value="3">Mar</option>
-                <option value="4">Apr</option>
-                <option value="5">May</option>
-                <option value="6">Jun</option>
-                <option value="7">Jul</option>
-                <option value="8">Aug</option>
-                <option value="9">Sep</option>
-                <option value="10">Oct</option>
-                <option value="11">Nov</option>
-                <option value="12">Dec</option>
-              </select>
-              <select
-                id="year"
-                name="year"
-                className="border border-gray-300 w-[10vw] h-[7vh] text-sm"
-                defaultValue=""
-              >
-                <option
-                  value=""
-                  disabled
-                  className="text-[#33333366] font-montserrat text-[13.893px] font-normal leading-[18.524px]"
-                >
-                  YYYY
-                </option>
-                {years.map((year) => (
-                  <option key={year} value={year}>
-                    {year}
-                  </option>
-                ))}
-              </select>
-            </div>
+            <MonthYearSelect monthId="month" yearId="year" years={years} />
           </div>
-          <div className="flex flex-col gap-2">
-            <label htmlFor="GPA" className="text-[16px] font-montserrat">
-              Percentage or CGPA Obtained<span className="text-red-600">*</span>
-            </label>
-            <input
-              type="text"
-              placeholder="Enter The Number you Obtained"
-              className="border border-gray-300 p-2 w-[25vw] placeholder-[rgba(51, 51, 51, 0.40)] placeholder-font-montserrat placeholder-text-[13.893px] placeholder-font-normal placeholder-leading-[18.524px]"
-            />
-          </div>
+          <InputField
+            label="Percentage or CGPA Obtained"
+            placeholder="Enter The Number you Obtained"
+            id="GPA"
+          />
         </div>
         <p className="font-montserrat text-[24px] font-bold">
           Education Details - Higher Secondary/Intermediate
         </p>
         <div className="flex justify-between">
-          <div className="flex flex-col gap-2">
-            <label htmlFor="schoolName" className="text-[16px] font-montserrat">
-              Name of the School/Institute
-              <span className="text-red-600">*</span>
-            </label>
-            <input
-              type="text"
-              placeholder="Enter Your School Name"
-              className="border border-gray-300 p-2 w-[25vw] placeholder-[rgba(51, 51, 51, 0.40)] placeholder-font-montserrat placeholder-text-[13.893px] placeholder-font-normal placeholder-leading-[18.524px]"
-            />
-          </div>
-          <div className="flex flex-col gap-2">
-            <label htmlFor="boardName" className="text-[16px] font-montserrat">
-              Name of the Board<span className="text-red-600">*</span>
-            </label>
-            <input
-              type="text"
-              placeholder="Enter the Board Name [Eg: AP State Board, CBSE]"
-              className="border border-gray-300 p-2 w-[25vw] placeholder-[rgba(51, 51, 51, 0.40)] placeholder-font-montserrat placeholder-text-[13.893px] placeholder-font-normal placeholder-leading-[18.524px]"
-            />
-          </div>
+          <InputField
+            label="Name of the School/Institute"
+            placeholder="Enter Your School Name"
+            id="schoolName"
+          />
+          <InputField
+            label="Name of the Board"
+            placeholder="Enter the Board Name [Eg: AP State Board, CBSE]"
+            id="boardName"
+          />
         </div>
         <div className="flex justify-between">
           <div className="flex flex-col gap-2">
@@ -134,107 +135,38 @@ const EducationMainPage = () => {
               htmlFor="yearOfCompletion"
               className="text-[16px] font-montserrat"
             >
-              Year of Completion<span className="text-red-600">*</span>
+              Year of Completion
+              <span className="text-red-600">*</span>
             </label>
-            <div className="flex gap-4">
-              <select
-                id="month"
-                name="month"
-                className="border border-gray-300 w-[8vw] h-[7vh] text-sm"
-                defaultValue=""
-              >
-                <option
-                  value=""
-                  disabled
-                  className="text-[#33333366] font-montserrat text-[13.893px] font-normal leading-[18.524px]"
-                >
-                  MM
-                </option>
-
-                <option value="1">Jan</option>
-                <option value="2">Feb</option>
-                <option value="3">Mar</option>
-                <option value="4">Apr</option>
-                <option value="5">May</option>
-                <option value="6">Jun</option>
-                <option value="7">Jul</option>
-                <option value="8">Aug</option>
-                <option value="9">Sep</option>
-                <option value="10">Oct</option>
-                <option value="11">Nov</option>
-                <option value="12">Dec</option>
-              </select>
-              <select
-                id="year"
-                name="year"
-                className="border border-gray-300 w-[10vw] h-[7vh] text-sm"
-                defaultValue=""
-              >
-                <option
-                  value=""
-                  disabled
-                  className="text-[#33333366] font-montserrat text-[13.893px] font-normal leading-[18.524px]"
-                >
-                  YYYY
-                </option>
-                {years.map((year) => (
-                  <option key={year} value={year}>
-                    {year}
-                  </option>
-                ))}
-              </select>
-            </div>
+            <MonthYearSelect monthId="month" yearId="year" years={years} />
           </div>
-          <div className="flex flex-col gap-2">
-            <label htmlFor="GPA" className="text-[16px] font-montserrat">
-              Percentage or CGPA Obtained<span className="text-red-600">*</span>
-            </label>
-            <input
-              type="text"
-              placeholder="Enter The Number you Obtained"
-              className="border border-gray-300 p-2 w-[25vw] placeholder-[rgba(51, 51, 51, 0.40)] placeholder-font-montserrat placeholder-text-[13.893px] placeholder-font-normal placeholder-leading-[18.524px]"
-            />
-          </div>
+          <InputField
+            label="Percentage or CGPA Obtained"
+            placeholder="Enter The Number you Obtained"
+            id="GPA"
+          />
         </div>
         <p className="font-montserrat text-[24px] font-bold">
           Education Details - Under Graduation
         </p>
         <div className="flex flex-col gap-2">
-          <label
-            htmlFor="universityName"
-            className="text-[16px] font-montserrat"
-          >
-            Name of the University/Institute*
-            <span className="text-red-600">*</span>
-          </label>
-          <input
-            type="text"
+          <InputField
+            label="Name of the University/Institute"
             placeholder="Enter the Name of Institution/University"
-            className="border border-gray-300 p-2 w-[25vw] placeholder-[rgba(51, 51, 51, 0.40)] placeholder-font-montserrat placeholder-text-[13.893px] placeholder-font-normal placeholder-leading-[18.524px]"
+            id="universityName"
           />
         </div>
         <div className="flex justify-between">
-          <div className="flex flex-col gap-2">
-            <label htmlFor="schoolName" className="text-[16px] font-montserrat">
-              Name of the Degree
-              <span className="text-red-600">*</span>
-            </label>
-            <input
-              type="text"
-              placeholder="Enter the Degree Type [Eg: B.Tech, M.Tech, B.Ed Etc..]"
-              className="border border-gray-300 p-2 w-[25vw] placeholder-[rgba(51, 51, 51, 0.40)] placeholder-font-montserrat placeholder-text-[13.893px] placeholder-font-normal placeholder-leading-[18.524px]"
-            />
-          </div>
-          <div className="flex flex-col gap-2">
-            <label htmlFor="boardName" className="text-[16px] font-montserrat">
-              Name of the Major<span className="text-red-600">*</span>
-            </label>
-            <input
-              type="text"
-              placeholder="Enter the Major Type [Eg: Computer Science Etc..]"
-              className="border border-gray-300 p-2 w-[25vw] placeholder-[rgba(51, 51, 51, 0.40)] placeholder-font-montserrat placeholder-text-[13.893px] placeholder-font-normal placeholder-leading-[18.524px]"
-            />
-          </div>
+          <InputField
+            label="Name of the Degree"
+            placeholder="Enter the Degree Type [Eg: B.Tech, M.Tech, B.Ed Etc..]"
+            id="degreeName"
+          />
+          <InputField
+            label="Name of the Major"
+            placeholder="Enter the Major Type [Eg: Computer Science Etc..]"
+            id="majorName"
+          />
         </div>
         <div className="flex justify-between">
           <div className="flex flex-col gap-2">
@@ -242,107 +174,38 @@ const EducationMainPage = () => {
               htmlFor="yearOfCompletion"
               className="text-[16px] font-montserrat"
             >
-              Year of Completion<span className="text-red-600">*</span>
+              Year of Completion
+              <span className="text-red-600">*</span>
             </label>
-            <div className="flex gap-4">
-              <select
-                id="month"
-                name="month"
-                className="border border-gray-300 w-[8vw] h-[7vh] text-sm"
-                defaultValue=""
-              >
-                <option
-                  value=""
-                  disabled
-                  className="text-[#33333366] font-montserrat text-[13.893px] font-normal leading-[18.524px]"
-                >
-                  MM
-                </option>
-
-                <option value="1">Jan</option>
-                <option value="2">Feb</option>
-                <option value="3">Mar</option>
-                <option value="4">Apr</option>
-                <option value="5">May</option>
-                <option value="6">Jun</option>
-                <option value="7">Jul</option>
-                <option value="8">Aug</option>
-                <option value="9">Sep</option>
-                <option value="10">Oct</option>
-                <option value="11">Nov</option>
-                <option value="12">Dec</option>
-              </select>
-              <select
-                id="year"
-                name="year"
-                className="border border-gray-300 w-[10vw] h-[7vh] text-sm"
-                defaultValue=""
-              >
-                <option
-                  value=""
-                  disabled
-                  className="text-[#33333366] font-montserrat text-[13.893px] font-normal leading-[18.524px]"
-                >
-                  YYYY
-                </option>
-                {years.map((year) => (
-                  <option key={year} value={year}>
-                    {year}
-                  </option>
-                ))}
-              </select>
-            </div>
+            <MonthYearSelect monthId="month" yearId="year" years={years} />
           </div>
-          <div className="flex flex-col gap-2">
-            <label htmlFor="GPA" className="text-[16px] font-montserrat">
-              Percentage or CGPA Obtained<span className="text-red-600">*</span>
-            </label>
-            <input
-              type="text"
-              placeholder="Enter The Number you Obtained"
-              className="border border-gray-300 p-2 w-[25vw] placeholder-[rgba(51, 51, 51, 0.40)] placeholder-font-montserrat placeholder-text-[13.893px] placeholder-font-normal placeholder-leading-[18.524px]"
-            />
-          </div>
+          <InputField
+            label="Percentage or CGPA Obtained"
+            placeholder="Enter The Number you Obtained"
+            id="GPA"
+          />
         </div>
         <p className="font-montserrat text-[24px] font-bold">
           Education Details - Post Graduation
         </p>
         <div className="flex flex-col gap-2">
-          <label
-            htmlFor="universityName"
-            className="text-[16px] font-montserrat"
-          >
-            Name of the University/Institute*
-            <span className="text-red-600">*</span>
-          </label>
-          <input
-            type="text"
+          <InputField
+            label="Name of the University/Institute"
             placeholder="Enter the Name of Institution/University"
-            className="border border-gray-300 p-2 w-[25vw] placeholder-[rgba(51, 51, 51, 0.40)] placeholder-font-montserrat placeholder-text-[13.893px] placeholder-font-normal placeholder-leading-[18.524px]"
+            id="universityName"
           />
         </div>
         <div className="flex justify-between">
-          <div className="flex flex-col gap-2">
-            <label htmlFor="schoolName" className="text-[16px] font-montserrat">
-              Name of the Degree
-              <span className="text-red-600">*</span>
-            </label>
-            <input
-              type="text"
-              placeholder="Enter the Degree Type [Eg: B.Tech, M.Tech, B.Ed Etc..]"
-              className="border border-gray-300 p-2 w-[25vw] placeholder-[rgba(51, 51, 51, 0.40)] placeholder-font-montserrat placeholder-text-[13.893px] placeholder-font-normal placeholder-leading-[18.524px]"
-            />
-          </div>
-          <div className="flex flex-col gap-2">
-            <label htmlFor="boardName" className="text-[16px] font-montserrat">
-              Name of the Major<span className="text-red-600">*</span>
-            </label>
-            <input
-              type="text"
-              placeholder="Enter the Major Type [Eg: Computer Science Etc..]"
-              className="border border-gray-300 p-2 w-[25vw] placeholder-[rgba(51, 51, 51, 0.40)] placeholder-font-montserrat placeholder-text-[13.893px] placeholder-font-normal placeholder-leading-[18.524px]"
-            />
-          </div>
+          <InputField
+            label="Name of the Degree"
+            placeholder="Enter the Degree Type [Eg: B.Tech, M.Tech, B.Ed Etc..]"
+            id="degreeName"
+          />
+          <InputField
+            label="Name of the Major"
+            placeholder="Enter the Major Type [Eg: Computer Science Etc..]"
+            id="majorName"
+          />
         </div>
         <div className="flex justify-between">
           <div className="flex flex-col gap-2">
@@ -350,67 +213,16 @@ const EducationMainPage = () => {
               htmlFor="yearOfCompletion"
               className="text-[16px] font-montserrat"
             >
-              Year of Completion<span className="text-red-600">*</span>
+              Year of Completion
+              <span className="text-red-600">*</span>
             </label>
-            <div className="flex gap-4">
-              <select
-                id="month"
-                name="month"
-                className="border border-gray-300 w-[8vw] h-[7vh] text-sm"
-                defaultValue=""
-              >
-                <option
-                  value=""
-                  disabled
-                  className="text-[#33333366] font-montserrat text-[13.893px] font-normal leading-[18.524px]"
-                >
-                  MM
-                </option>
-
-                <option value="1">Jan</option>
-                <option value="2">Feb</option>
-                <option value="3">Mar</option>
-                <option value="4">Apr</option>
-                <option value="5">May</option>
-                <option value="6">Jun</option>
-                <option value="7">Jul</option>
-                <option value="8">Aug</option>
-                <option value="9">Sep</option>
-                <option value="10">Oct</option>
-                <option value="11">Nov</option>
-                <option value="12">Dec</option>
-              </select>
-              <select
-                id="year"
-                name="year"
-                className="border border-gray-300 w-[10vw] h-[7vh] text-sm"
-                defaultValue=""
-              >
-                <option
-                  value=""
-                  disabled
-                  className="text-[#33333366] font-montserrat text-[13.893px] font-normal leading-[18.524px]"
-                >
-                  YYYY
-                </option>
-                {years.map((year) => (
-                  <option key={year} value={year}>
-                    {year}
-                  </option>
-                ))}
-              </select>
-            </div>
+            <MonthYearSelect monthId="month" yearId="year" years={years} />
           </div>
-          <div className="flex flex-col gap-2">
-            <label htmlFor="GPA" className="text-[16px] font-montserrat">
-              Percentage or CGPA Obtained<span className="text-red-600">*</span>
-            </label>
-            <input
-              type="text"
-              placeholder="Enter The Number you Obtained"
-              className="border border-gray-300 p-2 w-[25vw] placeholder-[rgba(51, 51, 51, 0.40)] placeholder-font-montserrat placeholder-text-[13.893px] placeholder-font-normal placeholder-leading-[18.524px]"
-            />
-          </div>
+          <InputField
+            label="Percentage or CGPA Obtained"
+            placeholder="Enter The Number you Obtained"
+            id="GPA"
+          />
         </div>
         <div className="border border-[#5C0E14] p-[16px_20px] max-w-fit text-[16px]">
           <button className="flex gap-1 ">
@@ -434,54 +246,28 @@ const EducationMainPage = () => {
         <p className="font-montserrat text-[24px] font-bold">
           Education Details - Phd
         </p>
-        <div className="flex flex-col gap-2">
-          <label htmlFor="boardName" className="text-[16px] font-montserrat">
-            Name of the University/Institute
-            <span className="text-red-600">*</span>
-          </label>
-          <input
-            type="text"
-            placeholder="Enter the Name of Institution/University"
-            className="border border-gray-300 p-2 w-[25vw] placeholder-[rgba(51, 51, 51, 0.40)] placeholder-font-montserrat placeholder-text-[13.893px] placeholder-font-normal placeholder-leading-[18.524px]"
-          />
-        </div>
-        <div className="flex flex-col gap-2">
-          <label htmlFor="boardName" className="text-[16px] font-montserrat">
-            Name of the Major<span className="text-red-600">*</span>
-          </label>
-          <input
-            type="text"
-            placeholder="Enter the Major Type [Eg: Computer Science Etc..]"
-            className="border border-gray-300 p-2 w-[25vw] placeholder-[rgba(51, 51, 51, 0.40)] placeholder-font-montserrat placeholder-text-[13.893px] placeholder-font-normal placeholder-leading-[18.524px]"
-          />
-        </div>
-        <div className="flex flex-col gap-2">
-          <label htmlFor="boardName" className="text-[16px] font-montserrat">
-            Ph.D. Status<span className="text-red-600">*</span>
-          </label>
-          <select
-            id="phd-status"
-            name="phd-status"
-            style={{
-              color: "black",
-              fontFamily: "Montserrat, sans-serif",
-              fontSize: "13.893px",
-              fontStyle: "normal",
-              fontWeight: "600",
-              lineHeight: "18.524px",
-              padding: "12px",
-            }}
-            className="block w-[25vw] px-3 py-2 border border-gray-300 shadow-sm focus:outline-none sm:text-sm"
-          >
-            <option value="" disabled selected>
-              Select
-            </option>
-            <option value="not_enrolled">Not Enrolled</option>
-            <option value="enrolled">Enrolled</option>
-            <option value="completed">Completed</option>
-            <option value="graduated">Graduated</option>
-          </select>
-        </div>
+        <InputField
+          label="Name of the University/Institute"
+          placeholder="Enter the Name of Institution/University"
+          id="universityName"
+        />
+        <InputField
+          label="Name of the Major"
+          placeholder="Enter the Major Type [Eg: Computer Science Etc..]"
+          id="majorName"
+        />
+
+        <SelectField
+          label="Ph.D. Status"
+          id="phd-status"
+          options={[
+            { value: "not_enrolled", label: "Not Enrolled" },
+            { value: "enrolled", label: "Enrolled" },
+            { value: "completed", label: "Completed" },
+            { value: "graduated", label: "Graduated" },
+          ]}
+        />
+
         <div className="flex flex-col gap-2">
           <label
             htmlFor="yearOfCompletion"
@@ -490,106 +276,33 @@ const EducationMainPage = () => {
             Completion Date/ Expected Completion Date
             <span className="text-red-600">*</span>
           </label>
-          <div className="flex gap-4">
-            <select
-              id="month"
-              name="month"
-              className="border border-gray-300 w-[8vw] h-[7vh] text-sm"
-              defaultValue=""
-            >
-              <option
-                value=""
-                disabled
-                className="text-[#33333366] font-montserrat text-[13.893px] font-normal leading-[18.524px]"
-              >
-                MM
-              </option>
-
-              <option value="1">Jan</option>
-              <option value="2">Feb</option>
-              <option value="3">Mar</option>
-              <option value="4">Apr</option>
-              <option value="5">May</option>
-              <option value="6">Jun</option>
-              <option value="7">Jul</option>
-              <option value="8">Aug</option>
-              <option value="9">Sep</option>
-              <option value="10">Oct</option>
-              <option value="11">Nov</option>
-              <option value="12">Dec</option>
-            </select>
-            <select
-              id="year"
-              name="year"
-              className="border border-gray-300 w-[10vw] h-[7vh] text-sm"
-              defaultValue=""
-            >
-              <option
-                value=""
-                disabled
-                className="text-[#33333366] font-montserrat text-[13.893px] font-normal leading-[18.524px]"
-              >
-                YYYY
-              </option>
-              {years.map((year) => (
-                <option key={year} value={year}>
-                  {year}
-                </option>
-              ))}
-            </select>
-          </div>
+          <MonthYearSelect monthId="month" yearId="year" years={years} />
         </div>
         <p className="font-montserrat text-[24px] font-bold">
           Education Details - PDF
         </p>
-        <div className="flex flex-col gap-2">
-          <label htmlFor="boardName" className="text-[16px] font-montserrat">
-            Name of the University/Institute
-            <span className="text-red-600">*</span>
-          </label>
-          <input
-            type="text"
-            placeholder="Enter the Name of Institution/University"
-            className="border border-gray-300 p-2 w-[25vw] placeholder-[rgba(51, 51, 51, 0.40)] placeholder-font-montserrat placeholder-text-[13.893px] placeholder-font-normal placeholder-leading-[18.524px]"
-          />
-        </div>
-        <div className="flex flex-col gap-2">
-          <label htmlFor="boardName" className="text-[16px] font-montserrat">
-            Name of the Discipline<span className="text-red-600">*</span>
-          </label>
-          <input
-            type="text"
-            placeholder="Enter the Major Type [Eg: Computer Science Etc..]"
-            className="border border-gray-300 p-2 w-[25vw] placeholder-[rgba(51, 51, 51, 0.40)] placeholder-font-montserrat placeholder-text-[13.893px] placeholder-font-normal placeholder-leading-[18.524px]"
-          />
-        </div>
-        <div className="flex flex-col gap-2">
-          <label htmlFor="boardName" className="text-[16px] font-montserrat">
-            PDF Status<span className="text-red-600">*</span>
-          </label>
-          <select
-            id="pdf-status"
-            name="pdf-status"
-            style={{
-              color: "black",
-              fontFamily: "Montserrat, sans-serif",
-              fontSize: "13.893px",
-              fontStyle: "normal",
-              fontWeight: "600",
-              lineHeight: "18.524px",
-              padding: "12px",
-            }}
-            className="block w-[25vw] px-3 py-2 border border-gray-300 shadow-sm focus:outline-none sm:text-sm"
-          >
-            <option value="" disabled selected>
-              Select
-            </option>
-            <option value="not_enrolled">Not Enrolled</option>
-            <option value="enrolled">Enrolled</option>
-            <option value="completed">Completed</option>
-            <option value="graduated">Graduated</option>
-          </select>
-        </div>
+        <InputField
+          label="Name of the University/Institute"
+          placeholder="Enter the Name of Institution/University"
+          id="universityName"
+        />
+        <InputField
+          label="Name of the Discipline"
+          placeholder="Enter the Major Type [Eg: Computer Science Etc..]"
+          id="disciplineName"
+        />
+
+        <SelectField
+          label="PDF Status"
+          id="pdf-status"
+          options={[
+            { value: "not_enrolled", label: "Not Enrolled" },
+            { value: "enrolled", label: "Enrolled" },
+            { value: "completed", label: "Completed" },
+            { value: "graduated", label: "Graduated" },
+          ]}
+        />
+
         <div className="flex flex-col gap-2">
           <label
             htmlFor="yearOfCompletion"
@@ -598,54 +311,7 @@ const EducationMainPage = () => {
             Completion Date/ Expected Completion Date
             <span className="text-red-600">*</span>
           </label>
-          <div className="flex gap-4">
-            <select
-              id="month"
-              name="month"
-              className="border border-gray-300 w-[8vw] h-[7vh] text-sm"
-              defaultValue=""
-            >
-              <option
-                value=""
-                disabled
-                className="text-[#33333366] font-montserrat text-[13.893px] font-normal leading-[18.524px]"
-              >
-                MM
-              </option>
-
-              <option value="1">Jan</option>
-              <option value="2">Feb</option>
-              <option value="3">Mar</option>
-              <option value="4">Apr</option>
-              <option value="5">May</option>
-              <option value="6">Jun</option>
-              <option value="7">Jul</option>
-              <option value="8">Aug</option>
-              <option value="9">Sep</option>
-              <option value="10">Oct</option>
-              <option value="11">Nov</option>
-              <option value="12">Dec</option>
-            </select>
-            <select
-              id="year"
-              name="year"
-              className="border border-gray-300 w-[10vw] h-[7vh] text-sm"
-              defaultValue=""
-            >
-              <option
-                value=""
-                disabled
-                className="text-[#33333366] font-montserrat text-[13.893px] font-normal leading-[18.524px]"
-              >
-                YYYY
-              </option>
-              {years.map((year) => (
-                <option key={year} value={year}>
-                  {year}
-                </option>
-              ))}
-            </select>
-          </div>
+          <MonthYearSelect monthId="month" yearId="year" years={years} />
         </div>
         <div className="flex justify-between pb-6">
           <div className="flex gap-1">

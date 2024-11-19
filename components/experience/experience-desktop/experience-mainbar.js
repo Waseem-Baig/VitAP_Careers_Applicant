@@ -1,33 +1,33 @@
-const InputField = ({
-  id,
-  label,
-  type = "text",
-  placeholder,
-  required = false,
-}) => (
+import React from "react";
+
+const InputField = ({ label, placeholder, id, width }) => (
   <div className="flex flex-col gap-2">
     <label htmlFor={id} className="text-[16px] font-montserrat">
       {label}
-      {required && <span className="text-red-600">*</span>}
+      <span className="text-red-600">*</span>
     </label>
     <input
-      id={id}
-      type={type}
+      type="text"
       placeholder={placeholder}
-      className="p-2 w-[25vw] border border-[#D1B3B8]"
+      className={`border border-[#D1B3B8] p-2 ${width} placeholder-[rgba(51, 51, 51, 0.40)] placeholder-font-montserrat placeholder-text-[13.893px] placeholder-font-normal placeholder-leading-[18.524px]`}
     />
   </div>
 );
 
-const SelectField = ({ id, label, options, required = false }) => (
+const SelectField = ({ label, id, options, width, placeholder }) => (
   <div className="flex flex-col gap-2">
     <label htmlFor={id} className="text-[16px] font-montserrat">
       {label}
-      {required && <span className="text-red-600">*</span>}
+      <span className="text-red-600">*</span>
     </label>
-    <select id={id} name={id} className="border border-[#D1B3B8] p-2 w-[25vw]">
-      <option value="" disabled>
-        -- Select {label} --
+    <select
+      id={id}
+      name={id}
+      className={`block ${width} px-3 py-3 border border-[#D1B3B8] shadow-sm focus:outline-none sm:text-sm`}
+      placeholder={placeholder}
+    >
+      <option value="" disabled defaultValue>
+        Select
       </option>
       {options.map((option) => (
         <option key={option.value} value={option.value}>
@@ -38,90 +38,78 @@ const SelectField = ({ id, label, options, required = false }) => (
   </div>
 );
 
-const MainContent = () => {
-  const genderOptions = [
-    { value: "male", label: "Male" },
-    { value: "female", label: "Female" },
-    { value: "non-binary", label: "Non-binary" },
-    { value: "prefer-not-to-say", label: "Prefer not to say" },
-    { value: "other", label: "Other" },
-  ];
-
-  const countryOptions = [
-    { value: "india", label: "India" },
-    { value: "usa", label: "United States" },
-    { value: "uk", label: "United Kingdom" },
-    { value: "canada", label: "Canada" },
-    { value: "australia", label: "Australia" },
-    { value: "germany", label: "Germany" },
-    { value: "france", label: "France" },
-    { value: "japan", label: "Japan" },
-    { value: "china", label: "China" },
-    { value: "brazil", label: "Brazil" },
-    { value: "south-africa", label: "South Africa" },
-    { value: "other", label: "Other" },
-  ];
-
+const ExperienceMainbar = () => {
   return (
     <div className="overflow-y-scroll flex flex-col w-[80vw] h-[75vh] p-6 bg-[#5C0E1405]">
       <div className="flex flex-col w-[80%] h-[100%] gap-6">
         <p className="font-montserrat text-[24px] font-bold">
-          Personal Information
+          Professional Experience details
         </p>
-        <div className="flex flex-col gap-5">
-          <SelectField
-            id="salutation"
-            label="Salutation"
-            options={[
-              { value: "he/him", label: "He/Him" },
-              { value: "she/her", label: "She/Her" },
-              { value: "they/them", label: "They/Them" },
-              { value: "ze/zir", label: "Ze/Zir" },
-              { value: "other", label: "Other" },
-            ]}
-            required
+        <InputField
+          label="Total Experience (in years)"
+          placeholder="Enter Your Experience in Number , 0 if you have no experience"
+          id="experienceTotal"
+          width={"w-[45vw]"}
+        />
+        <InputField
+          label="Experience after Ph.D. (in years)"
+          placeholder="Enter Your Experience in Number , 0 if you have no experience"
+          id="experiencePHD"
+          width={"w-[45vw]"}
+        />
+        <InputField
+          label="Industry Experience (in years)"
+          placeholder="Enter Your Experience in Number , 0 if you have no experience"
+          id="experienceIndustry"
+          width={"w-[45vw]"}
+        />
+        <div className="flex justify-between gap-16">
+          <InputField
+            label="Current Institute/ Organization"
+            placeholder="Enter The Name of Organization"
+            id="instituteCurrent"
+            width={"w-[30vw]"}
           />
           <InputField
-            id="name"
-            label="Name as per Aadhar card"
-            placeholder="Enter your name"
-            required
+            label="Current Designation"
+            placeholder="Enter your Present Role"
+            id="designationCurrent"
+            width={"w-[30vw]"}
           />
-          <div className="flex justify-between">
-            <InputField id="email" label="Email ID" required />
-            <InputField id="phone" label="Phone Number" required />
-          </div>
-          <SelectField
-            id="gender"
-            label="Gender"
-            options={genderOptions}
-            required
-          />
-          <InputField id="nationality" label="Nationality" required />
-          <div className="flex justify-between">
-            <InputField id="address" label="Postal Address" required />
-            <SelectField
-              id="country"
-              label="Country"
-              options={countryOptions}
-              required
-            />
-          </div>
-          <div className="flex justify-between">
-            <InputField
-              id="state"
-              label="State"
-              placeholder="Enter your State"
-              required
-            />
-            <InputField
-              id="city "
-              label="City"
-              placeholder="Enter your city"
-              required
-            />
-          </div>
         </div>
+        <SelectField
+          label="Have you served in VIT (Vellore/Chennai/Bhopal/Amaravati) before?"
+          id="phd-status"
+          options={[
+            { value: "yes", label: "Yes" },
+            { value: "no", label: "No" },
+            { value: "na", label: "NA" },
+          ]}
+          width={"w-[30vw]"}
+        />
+        <div className="flex justify-between gap-16">
+          <InputField
+            label="Present Salary ( Per month in INR)"
+            placeholder="Enter Your Salary in Number [ Ex: 1200000]"
+            id="salaryCurrent"
+            width={"w-[30vw]"}
+          />
+          <InputField
+            label="Expected Salary ( Per month in INR)"
+            placeholder="Enter Your Salary in Number [ Ex: 1200000]"
+            id="salaryExpected"
+            width={"w-[30vw]"}
+          />
+        </div>
+        <SelectField
+          label="When can you join, if you are given an offer *"
+          options={[
+            { value: "yes", label: "Yes" },
+            { value: "no", label: "No" },
+          ]}
+          width={"w-[30vw]"}
+          placeholder={"Select Yes, if you can join immediately or No."}
+        />
         <div className="flex justify-between pb-6">
           <div className="flex gap-1">
             <button className="flex justify-center items-center gap-[10px] flex-shrink-0 w-[12vw] border border-[rgba(92,14,20,0.5)] shadow-[0px_10px_30px_0px_rgba(101,0,16,0.2)] p-[12px_15px]">
@@ -163,4 +151,4 @@ const MainContent = () => {
   );
 };
 
-export default MainContent;
+export default ExperienceMainbar;

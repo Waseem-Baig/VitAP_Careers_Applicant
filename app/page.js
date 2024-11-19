@@ -13,11 +13,17 @@ import Personal from "@/components/personal-information/personal-information-des
 import PersonalInformationMobile from "@/components/personal-information/personal-information-mobile/personal-information-mobile";
 import PersonalInformationWrapper from "@/pages/personal-information-wrapper";
 import EducationPage from "@/components/education/education-desktop/education-page";
+import EducationMobilePage from "@/components/education/education-mobile/education-mobile";
+import EducationWrapper from "@/pages/education-wrapper";
+import ExperienceDesktop from "@/components/experience/experience-desktop/experience-page";
+import ExperienceMobile from "@/components/experience/experience-mobile/experience-mobile";
+import ExperienceWrapper from "@/pages/experience-wrapper";
+import ResearchDesktop from "@/components/research/research-desktop/research-desktop";
 
 export default function Home() {
   return (
     <>
-      <EducationPage />
+      <ResearchDesktop />
     </>
   );
 }
