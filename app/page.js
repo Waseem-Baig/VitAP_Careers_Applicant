@@ -19,11 +19,17 @@ import ExperienceDesktop from "@/components/experience/experience-desktop/experi
 import ExperienceMobile from "@/components/experience/experience-mobile/experience-mobile";
 import ExperienceWrapper from "@/pages/experience-wrapper";
 import ResearchDesktop from "@/components/research/research-desktop/research-desktop";
+import ResearchMobile from "@/components/research/research-mobile/research-mobile";
+import ResearchWrapper from "@/pages/research-wrapper";
+import DocumentsUploadMainPage from "@/components/documents-upload/documents-upload-desktop/documents-desktop";
+import DocumentsDesktop from "@/components/documents-upload/documents-upload-desktop/documents-upload";
+import DocumentsMobile from "@/components/documents-upload/documents-upload-mobile/documents-mobile";
+import DocumentsWrapper from "@/pages/documents-wrapper";
 
 export default function Home() {
   return (
     <>
-      <ResearchDesktop />
+      <DocumentsWrapper />
     </>
   );
 }
